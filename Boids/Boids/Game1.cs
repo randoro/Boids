@@ -18,6 +18,8 @@ namespace Boids
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        public static Texture2D boidText;
+        private BoidAlgorithmManager BAM;
 
         public Game1()
         {
@@ -48,7 +50,8 @@ namespace Boids
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
+            boidText = Content.Load<Texture2D>("boidtext");
+            BAM = new BoidAlgorithmManager();
             // TODO: use this.Content to load your game content here
         }
 
@@ -72,6 +75,8 @@ namespace Boids
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
 
+
+            BAM.Update(gameTime);
             // TODO: Add your update logic here
 
             base.Update(gameTime);
@@ -84,6 +89,13 @@ namespace Boids
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
+
+            spriteBatch.Begin();
+
+            BAM.Draw(spriteBatch);
+
+            spriteBatch.End();
+
 
             // TODO: Add your drawing code here
 
