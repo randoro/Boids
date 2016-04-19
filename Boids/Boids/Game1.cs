@@ -23,6 +23,8 @@ namespace Boids
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            graphics.PreferredBackBufferWidth = Globals.xScreen;
+            graphics.PreferredBackBufferHeight = Globals.yScreen;
         }
 
         /// <summary>

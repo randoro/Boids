@@ -1,0 +1,6 @@
+D:\SourceTree\Boids\Boids\Boids\bin\x86\Debug\Boids.exe
+D:\SourceTree\Boids\Boids\Boids\bin\x86\Debug\Boids.pdb
+D:\SourceTree\Boids\Boids\Boids\obj\x86\Debug\Boids.csprojResolveAssemblyReference.cache
+D:\SourceTree\Boids\Boids\Boids\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+D:\SourceTree\Boids\Boids\Boids\obj\x86\Debug\Boids.exe
+D:\SourceTree\Boids\Boids\Boids\obj\x86\Debug\Boids.pdb
