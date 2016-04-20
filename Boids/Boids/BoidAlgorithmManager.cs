@@ -10,11 +10,12 @@ namespace Boids
     class BoidAlgorithmManager
     {
         private List<Boid> allBoids;
+        private LBI deathGrid;
 
         public BoidAlgorithmManager()
         {
             allBoids = new List<Boid>();
-
+            deathGrid = new LBI(Globals.xScreen / 10, Globals.yScreen / 10);
             //allBoids.Add(new Boid(new Vector2(400, 400), new Vector2(0.5f, -0.5f)));
             //allBoids.Add(new Boid(new Vector2(700, 400), new Vector2(-0.5f, -0.5f)));
             //allBoids.Add(new Boid(new Vector2(500, 200), new Vector2(0.5f, 0.4f)));
@@ -56,7 +57,11 @@ namespace Boids
                 Vector2 cohesionVect = Cohesion(allBoids[i]);
                 cohesionVect = Vector2.Multiply(cohesionVect, 1f);
 
-                Vector2 newForce = sepVect + alignVect + cohesionVect;
+                // FBI avoidence
+                Vector2 fbiAvoidVect = deathGrid.AvoidFBINodes(allBoids[i]);
+                fbiAvoidVect = Vector2.Multiply(fbiAvoidVect, 1f);
+
+                Vector2 newForce = sepVect + alignVect + cohesionVect + fbiAvoidVect;
                 allBoids[i].Update(gameTime, newForce);
             }
         }
