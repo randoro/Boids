@@ -5,3 +5,4 @@ D:\SourceTree\Boids\Boids\Boids\obj\x86\Debug\Microsoft.Xna.Framework.RuntimePro
 D:\SourceTree\Boids\Boids\Boids\obj\x86\Debug\Boids.exe
 D:\SourceTree\Boids\Boids\Boids\obj\x86\Debug\Boids.pdb
 D:\SourceTree\Boids\Boids\Boids\bin\x86\Debug\Content\boidtext.xnb
+D:\SourceTree\Boids\Boids\Boids\bin\x86\Debug\Content\font.xnb

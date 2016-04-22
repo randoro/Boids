@@ -19,6 +19,8 @@ namespace Boids
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         public static Texture2D boidText;
+        public static SpriteFont font;
+        public static int deaths = 0;
         private BoidAlgorithmManager BAM;
 
         public Game1()
@@ -51,6 +53,7 @@ namespace Boids
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             boidText = Content.Load<Texture2D>("boidtext");
+            font = Content.Load<SpriteFont>("font");
             BAM = new BoidAlgorithmManager();
             // TODO: use this.Content to load your game content here
         }
@@ -71,10 +74,22 @@ namespace Boids
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            KeyMouseReader.Update();
             // Allows the game to exit
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
+            if (KeyMouseReader.KeyPressed(Keys.Escape))
+            {
                 this.Exit();
+            }
 
+            if (KeyMouseReader.KeyPressed(Keys.F2))
+            {
+                BAM.BlocksToggle();
+            }
+
+            if (KeyMouseReader.KeyPressed(Keys.F3))
+            {
+                BAM.LBIToggle();
+            }
 
             BAM.Update(gameTime);
             // TODO: Add your update logic here
@@ -91,6 +106,14 @@ namespace Boids
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             spriteBatch.Begin();
+
+            Vector2 offset = new Vector2(20, 20);
+            spriteBatch.DrawString(font, "F2: Show/Hide Boxes.", offset, Color.White);
+            offset.Y += 30;
+            spriteBatch.DrawString(font, "F3: Show/Hide LBI grid.", offset, Color.White);
+            offset.Y += 30;
+            spriteBatch.DrawString(font, "Total Boid deaths: "+deaths, offset, Color.White);
+            offset.Y += 30;
 
             BAM.Draw(spriteBatch);
 

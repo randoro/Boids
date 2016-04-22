@@ -10,30 +10,56 @@ namespace Boids
     class Boid
     {
         public Vector2 position;
+        public bool died { get; private set; }
         public Vector2 velocity { get; set; }
         public List<Boid> localNeighbours { get; private set; }
+        private LBI informationGrid;
 
-        public Boid(Vector2 startPosition, Vector2 startVelocity)
+        public Boid(Vector2 startPosition, Vector2 startVelocity, LBI informationGrid)
         {
             position = startPosition;
             velocity = startVelocity;
+            this.informationGrid = informationGrid;
             localNeighbours = new List<Boid>();
         }
 
         public void Update(GameTime gameTime, Vector2 newForce)
         {
-            velocity = velocity + newForce;
-            position += velocity;
+            if (!died)
+            {
+                velocity = velocity + newForce;
+                position += velocity;
 
-            fixOutSideScreen();
 
+                checkIfDied();
+
+                fixOutSideScreen();
+            }
+        }
+
+        private void checkIfDied()
+        {
+            for (int i = 0; i < BoidAlgorithmManager.blockList.Count; i++)
+            {
+                if(BoidAlgorithmManager.blockList[i].position.Contains((int)position.X, (int)position.Y))
+                {
+                    died = true;
+                    informationGrid.AddDot(position);
+                    Game1.deaths++;
+                    break;
+                }
+            }
         }
 
 
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Game1.boidText, position, new Rectangle(1, 1, 36, 22), Color.White, (float)Math.Atan2(velocity.Y, velocity.X), new Vector2(18, 11), Vector2.One, SpriteEffects.None, 1f);
+            if (!died)
+            {
+                spriteBatch.Draw(Game1.boidText, position, new Rectangle(1, 1, 36, 22), Color.White,
+                    (float) Math.Atan2(velocity.Y, velocity.X), new Vector2(18, 11), Vector2.One, SpriteEffects.None, 1f);
+            }
         }
 
         private void fixOutSideScreen()

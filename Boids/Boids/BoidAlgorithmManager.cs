@@ -11,11 +11,69 @@ namespace Boids
     {
         private List<Boid> allBoids;
         private LBI deathGrid;
+        public static List<Block> blockList;
+        private bool viewBlocks;
 
         public BoidAlgorithmManager()
         {
             allBoids = new List<Boid>();
-            deathGrid = new LBI(Globals.xScreen / 10, Globals.yScreen / 10);
+            deathGrid = new LBI(Globals.xScreen / Globals.lbiSpaceBetween, Globals.yScreen / Globals.lbiSpaceBetween);
+            blockList = new List<Block>();
+
+            viewBlocks = true;
+
+            int offset = 50;
+
+            for (int i = 0; i < 10; i++)
+            {
+                Block newBlock = new Block(new Rectangle(Globals.rand.Next(offset, Globals.xScreen - offset), Globals.rand.Next(offset, Globals.yScreen - offset),
+                    Globals.rand.Next(offset, 300), Globals.rand.Next(offset, 300)));
+
+                bool removed = false;
+
+                if (newBlock.position.Contains(new Point(Globals.xScreen / 2, Globals.yScreen / 2)))
+                {
+                    removed = true;
+                }
+
+                if (newBlock.position.Contains(new Point(Globals.xScreen / 2 - offset, Globals.yScreen / 2 - offset)))
+                {
+                    removed = true;
+                }
+
+                if (newBlock.position.Contains(new Point(Globals.xScreen / 2 + offset, Globals.yScreen / 2 - offset)))
+                {
+                    removed = true;
+                }
+
+                if (newBlock.position.Contains(new Point(Globals.xScreen / 2 - offset, Globals.yScreen / 2 + offset)))
+                {
+                    removed = true;
+                }
+
+                if (newBlock.position.Contains(new Point(Globals.xScreen / 2 + offset, Globals.yScreen / 2 + offset)))
+                {
+                    removed = true;
+                }
+
+                if (newBlock.position.Right > Globals.xScreen)
+                {
+                    removed = true;
+                }
+
+                if (newBlock.position.Bottom > Globals.yScreen)
+                {
+                    removed = true;
+                }
+
+                if (!removed)
+                {
+                    blockList.Add(newBlock);
+                }
+            }
+
+
+            blockList.Add(new Block(new Rectangle(300, 300, 100, 100)));
             //allBoids.Add(new Boid(new Vector2(400, 400), new Vector2(0.5f, -0.5f)));
             //allBoids.Add(new Boid(new Vector2(700, 400), new Vector2(-0.5f, -0.5f)));
             //allBoids.Add(new Boid(new Vector2(500, 200), new Vector2(0.5f, 0.4f)));
@@ -33,7 +91,7 @@ namespace Boids
             {
                 Vector2 staticPos = new Vector2(Globals.xScreen/2, Globals.yScreen/2);
                 Vector2 randVel = new Vector2((float)(Globals.rand.NextDouble() * 2.0f)- 1.0f, (float)(Globals.rand.NextDouble() * 2.0f)- 1.0f);
-                allBoids.Add(new Boid(staticPos, randVel));
+                allBoids.Add(new Boid(staticPos, randVel, deathGrid));
             }
 
         }
@@ -41,7 +99,19 @@ namespace Boids
 
         public void Update(GameTime gameTime)
         {
-            for (int i = 0; i < allBoids.Count; i++)
+
+            if (allBoids.Count < Globals.boidAmountTotal)
+            {
+                for (int i = 0; i < Globals.boidAmountTotal - allBoids.Count; i++)
+                {
+                    Vector2 staticPos = new Vector2(Globals.xScreen / 2, Globals.yScreen / 2);
+                    Vector2 randVel = new Vector2((float)(Globals.rand.NextDouble() * 2.0f) - 1.0f, (float)(Globals.rand.NextDouble() * 2.0f) - 1.0f);
+                    allBoids.Add(new Boid(staticPos, randVel, deathGrid));
+                }
+            }
+
+
+            for (int i = allBoids.Count; i-- > 0; )
             {
                 AddLocalNeighbours(allBoids[i]);
 
@@ -63,14 +133,35 @@ namespace Boids
 
                 Vector2 newForce = sepVect + alignVect + cohesionVect + fbiAvoidVect;
                 allBoids[i].Update(gameTime, newForce);
+
+                if (allBoids[i].died)
+                {
+                    allBoids.RemoveAt(i);
+                }
+            }
+
+
+            for (int i = blockList.Count; i --> 0;)
+            {
+                blockList[i].Update(gameTime);
             }
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
+            deathGrid.Draw(spriteBatch);
+
             for (int i = 0; i < allBoids.Count; i++)
             {
                 allBoids[i].Draw(spriteBatch);
+            }
+
+            if (viewBlocks)
+            {
+                for (int i = 0; i < blockList.Count; i++)
+                {
+                    blockList[i].Draw(spriteBatch);
+                }
             }
         }
 
@@ -287,5 +378,15 @@ namespace Boids
 
 
 
+
+        public void LBIToggle()
+        {
+            deathGrid.viewLBI = !deathGrid.viewLBI;
+        }
+
+        public void BlocksToggle()
+        {
+            viewBlocks = !viewBlocks;
+        }
     }
 }
