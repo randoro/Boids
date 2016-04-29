@@ -7,8 +7,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\SourceTree\Boids\Boids\Boids\bin\x86\Debug\Content\boidtext.xnb</Output>
-      <Time>2016-04-22T16:24:44.7603591+02:00</Time>
+      <Output>C:\Users\Spellabbet\Documents\Boids\Boids\Boids\bin\x86\Debug\Content\boidtext.xnb</Output>
+      <Time>2016-04-28T09:18:26.7962328+02:00</Time>
     </Item>
     <Item>
       <Source>font.spritefont</Source>
@@ -16,8 +16,8 @@
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\SourceTree\Boids\Boids\Boids\bin\x86\Debug\Content\font.xnb</Output>
-      <Time>2016-04-22T16:31:16.2245315+02:00</Time>
+      <Output>C:\Users\Spellabbet\Documents\Boids\Boids\Boids\bin\x86\Debug\Content\font.xnb</Output>
+      <Time>2016-04-28T09:18:26.7997476+02:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
@@ -26,10 +26,10 @@
       <TargetProfile>Reach</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
-      <RootDirectory>D:\SourceTree\Boids\Boids\BoidsContent\</RootDirectory>
-      <LoggerRootDirectory>D:\SourceTree\Boids\Boids\Boids\</LoggerRootDirectory>
-      <IntermediateDirectory>D:\SourceTree\Boids\Boids\Boids\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>D:\SourceTree\Boids\Boids\Boids\bin\x86\Debug\Content\</OutputDirectory>
+      <RootDirectory>C:\Users\Spellabbet\Documents\Boids\Boids\BoidsContent\</RootDirectory>
+      <LoggerRootDirectory>C:\Users\Spellabbet\Documents\Boids\Boids\Boids\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Users\Spellabbet\Documents\Boids\Boids\Boids\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Users\Spellabbet\Documents\Boids\Boids\Boids\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>
@@ -58,7 +58,7 @@
       </Assembly>
       <Assembly>
         <Key>C:\Windows\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
-        <Value>2015-10-04T21:08:59.773562+02:00</Value>
+        <Value>2014-08-18T15:31:39.322524+02:00</Value>
       </Assembly>
     </Assemblies>
   </Asset>

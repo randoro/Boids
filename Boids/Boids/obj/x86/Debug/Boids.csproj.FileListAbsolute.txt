@@ -6,3 +6,11 @@ D:\SourceTree\Boids\Boids\Boids\obj\x86\Debug\Boids.exe
 D:\SourceTree\Boids\Boids\Boids\obj\x86\Debug\Boids.pdb
 D:\SourceTree\Boids\Boids\Boids\bin\x86\Debug\Content\boidtext.xnb
 D:\SourceTree\Boids\Boids\Boids\bin\x86\Debug\Content\font.xnb
+C:\Users\Spellabbet\Documents\Boids\Boids\Boids\bin\x86\Debug\Content\boidtext.xnb
+C:\Users\Spellabbet\Documents\Boids\Boids\Boids\bin\x86\Debug\Content\font.xnb
+C:\Users\Spellabbet\Documents\Boids\Boids\Boids\bin\x86\Debug\Boids.exe
+C:\Users\Spellabbet\Documents\Boids\Boids\Boids\bin\x86\Debug\Boids.pdb
+C:\Users\Spellabbet\Documents\Boids\Boids\Boids\obj\x86\Debug\Boids.csprojResolveAssemblyReference.cache
+C:\Users\Spellabbet\Documents\Boids\Boids\Boids\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Spellabbet\Documents\Boids\Boids\Boids\obj\x86\Debug\Boids.exe
+C:\Users\Spellabbet\Documents\Boids\Boids\Boids\obj\x86\Debug\Boids.pdb
